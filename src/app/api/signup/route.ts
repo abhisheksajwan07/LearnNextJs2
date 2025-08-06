@@ -2,12 +2,12 @@ import dbConnect from "@/lib/dbConnect";
 import { User } from "@/model/User";
 import bcrypt from "bcryptjs";
 import { sendVerificationEmail } from "@/helpers/sendVerificationEmail";
-import { error } from "console";
+
 import { ApiResponse } from "@/types/apiResponse";
-import { success } from "zod";
-import { hash } from "crypto";
 
 export async function POST(request: Request) {
+  console.log(" API Route Hit: Signup");
+  await dbConnect();
   try {
     const { username, email, password } = await request.json();
     const existingVerifiedUserByUsername = await User.findOne({
@@ -59,7 +59,7 @@ export async function POST(request: Request) {
       });
       await newUser.save();
     }
-    //email 
+    //email
     const emailResponse = await sendVerificationEmail(
       email,
       password,
