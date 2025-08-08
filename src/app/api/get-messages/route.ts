@@ -49,5 +49,13 @@ export async function GET(request: Request) {
         status: 200,
       }
     );
-  } catch (err) {}
+  } catch (err) {
+    console.log("an unexpected error occured:",err)
+    return Response.json({
+      success:false,
+      message:"not authenticated"
+    },{
+      status:500
+    })
+  }
 }
