@@ -84,105 +84,125 @@ const Page = () => {
     }
   };
   return (
-    <div>
-      <div className="flex justify-center  items-center min-h-screen bg-gray-800">
-        <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
-          <div className="text-center">
-            <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">
-              Join True Feedback
-            </h1>
-            <p className="mb-4">Sign up to start your anonymous adventure</p>
-          </div>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-600 to-purple-700 px-4">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-10">
+        <div className="mb-8 text-center">
+          <h1 className=" font-extrabold text-gray-900 mb-2">
+            Join True Feedback
+          </h1>
+          <p className="text-gray-600 text-lg">
+            Sign up to start your anonymous adventure
+          </p>
+        </div>
 
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-              <FormField
-                control={form.control}
-                name="username"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Username</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="username"
-                        {...field}
-                        onChange={(e) => {
-                          field.onChange(e);
-                          debounced(e.target.value);
-                        }}
-                      />
-                    </FormControl>
-                    {isCheckingUsername && <Loader2 className="animate-spin" />}
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <FormField
+              control={form.control}
+              name="username"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="font-semibold text-gray-700">
+                    Username
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="Enter your username"
+                      {...field}
+                      onChange={(e) => {
+                        field.onChange(e);
+                        debounced(e.target.value);
+                      }}
+                      className="border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-400 rounded-md"
+                    />
+                  </FormControl>
+                  <div className="mt-1 flex items-center space-x-2">
+                    {isCheckingUsername && (
+                      <Loader2 className="animate-spin h-5 w-5 text-blue-500" />
+                    )}
                     <p
                       className={`text-sm ${
                         usernameMessage === "Username is unique"
-                          ? "text-green-500"
-                          : "text-red-500"
+                          ? "text-green-600"
+                          : "text-red-600"
                       }`}
                     >
                       {usernameMessage}
                     </p>
+                  </div>
+                  <FormMessage className="text-red-600 mt-1" />
+                </FormItem>
+              )}
+            />
 
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input placeholder="email" {...field} />
-                    </FormControl>
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="font-semibold text-gray-700">
+                    Email
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      type="email"
+                      placeholder="Enter your email"
+                      {...field}
+                      className="border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-400 rounded-md"
+                    />
+                  </FormControl>
+                  <FormMessage className="text-red-600 mt-1" />
+                </FormItem>
+              )}
+            />
 
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Password</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="password"
-                        placeholder="password"
-                        {...field}
-                      />
-                    </FormControl>
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="font-semibold text-gray-700">
+                    Password
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      type="password"
+                      placeholder="Enter your password"
+                      {...field}
+                      className="border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-400 rounded-md"
+                    />
+                  </FormControl>
+                  <FormMessage className="text-red-600 mt-1" />
+                </FormItem>
+              )}
+            />
 
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button type="submit" disabled={isSubmitting}>
-                {isSubmitting ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please
-                    wait
-                  </>
-                ) : (
-                  "signup"
-                )}
-              </Button>
-            </form>
-          </Form>
+            <Button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 text-white font-semibold rounded-lg py-3 transition duration-300 flex justify-center items-center"
+            >
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="mr-2 h-5 w-5 animate-spin" /> Please wait
+                </>
+              ) : (
+                "Sign up"
+              )}
+            </Button>
+          </form>
+        </Form>
 
-          <div className="text-center mt-4">
-            <p>
-              Already a member?{" "}
-              <Link
-                href="/signin"
-                className="text-blue-600 hover:text-blue-800"
-              >
-                Sign in
-              </Link>
-            </p>
-          </div>
+        <div className="mt-6 text-center text-gray-700">
+          <p>
+            Already a member?{" "}
+            <Link
+              href="/signin"
+              className="text-blue-600 hover:text-blue-800 font-semibold"
+            >
+              Sign in
+            </Link>
+          </p>
         </div>
       </div>
     </div>
