@@ -25,8 +25,6 @@ import { useForm } from "react-hook-form";
 import { signInSchema } from "@/schemas/signInSchema";
 import { signIn } from "next-auth/react";
 const Page = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
   const router = useRouter();
   //zod implementation
 
@@ -34,100 +32,72 @@ const Page = () => {
     resolver: zodResolver(signInSchema),
     defaultValues: {
       password: "",
-      email: "",
+      identifier: "",
     },
   });
 
   const onSubmit = async (data: z.infer<typeof signInSchema>) => {
     const res = await signIn("credentials", {
-        redirect:false,
-      email: data.email,
+      redirect: false,
+      identifier: data.identifier,
       password: data.password,
     });
-    if(res?.error){
-        toast.error(res?.error?.data?.message)
+    console.log("SignIn result:", res);
+    if (res?.error) {
+      if (res.error === "CredentialsSignin") {
+        toast.error("incorrect username or password");
+      } else {
+        toast.error(res.error);
+      }
+    }
+    console.log(res?.url);
+    if (res?.url) {
+      router.replace("/dashboard");
     }
   };
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-500 px-4">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-10">
-        <div className="mb-8 text-center">
-          <h1 className="text-3xl font-extrabold text-gray-900 mb-2">
-            Join True Feedback
+    <div className="flex justify-center items-center min-h-screen bg-gray-800">
+      <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
+        <div className="text-center">
+          <h1 className="text-4xl  font-extrabold tracking-tight lg:text-5xl mb-6">
+            Welcome Back to True Feedback
           </h1>
-          <p className="text-gray-600 text-lg">
-            Sign up to start your anonymous adventure
-          </p>
+          <p className="mb-4">Sign in to continue your secret conversations</p>
         </div>
-
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <FormField
-              control={form.control}
               name="identifier"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="font-semibold text-gray-700">
-                    Email
-                  </FormLabel>
-                  <FormControl>
-                    <Input
-                      type="email"
-                      placeholder="Enter your email"
-                      {...field}
-                      className="border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-400 rounded-md"
-                    />
-                  </FormControl>
-                  <FormMessage className="text-red-600 mt-1" />
-                </FormItem>
-              )}
-            />
-
-            <FormField
               control={form.control}
-              name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="font-semibold text-gray-700">
-                    Password
-                  </FormLabel>
-                  <FormControl>
-                    <Input
-                      type="password"
-                      placeholder="Enter your password"
-                      {...field}
-                      className="border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-400 rounded-md"
-                    />
-                  </FormControl>
+                  <FormLabel>Email/Username</FormLabel>
+                  <Input {...field} />
                   <FormMessage className="text-red-600 mt-1" />
                 </FormItem>
               )}
             />
-
-            <Button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 text-white font-semibold rounded-lg py-3 transition duration-300 flex justify-center items-center"
-            >
-              {isSubmitting ? (
-                <>
-                  <Loader2 className="mr-2 h-5 w-5 animate-spin" /> Please wait
-                </>
-              ) : (
-                "Sign up"
+            <FormField
+              name="password"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Password</FormLabel>
+                  <Input type="password" {...field} />
+                  <FormMessage className="text-red-600 mt-1" />
+                </FormItem>
               )}
+            />
+            <Button className="w-full hover:bg-blue-200" type="submit">
+              Sign In
             </Button>
           </form>
         </Form>
-
-        <div className="mt-6 text-center text-gray-700">
+        <div className="text-center mt-4">
           <p>
-            Already a member?{" "}
-            <Link
-              href="/signin"
-              className="text-blue-600 hover:text-blue-800 font-semibold"
-            >
-              Sign in
+            Not a member yet?{" "}
+            <Link href="/signup" className="text-blue-600 hover:text-blue-800">
+              Sign up
             </Link>
           </p>
         </div>
