@@ -46,7 +46,7 @@ const Page = () => {
     console.log("Errors: ", form.formState.errors);
   }, [form.formState.errors]);
 
-  
+
   useEffect(() => {
     const checkUsernameUnique = async () => {
       if (username) {
@@ -91,6 +91,7 @@ const Page = () => {
     } catch (err) {
       console.error("error in signup of user", err);
       const axiosError = err as AxiosError<ApiResponse>;
+      console.log(axiosError)
       const errorMessage = axiosError.response?.data.message;
       toast.error(errorMessage);
       setIsSubmitting(false);

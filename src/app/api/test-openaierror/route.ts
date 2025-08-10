@@ -2,7 +2,7 @@ import OpenAI from "openai";
 import { NextResponse } from "next/server";
 
 const client = new OpenAI({
-  apiKey: "FAKE_KEY", 
+  apiKey: "FAKE_KEY",
 });
 
 export async function GET() {
@@ -15,10 +15,10 @@ export async function GET() {
     return NextResponse.json(res);
   } catch (error) {
     console.log("------ Raw Error ------");
-    console.log(error);
+    console.log(error.response?.data || error);
 
     console.log("\n------ Full Structure ------");
-    console.dir(error, { depth: null });
+    console.dir(error, { depth: null, colors: true });
 
     console.log("\n------ Specific Fields ------");
     console.log("Name:", error.name);
