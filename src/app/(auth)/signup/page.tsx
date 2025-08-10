@@ -4,7 +4,7 @@ import { toast } from "sonner";
 import * as z from "zod";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { useDebounceCallback, useDebounceValue } from "usehooks-ts";
+import { useDebounceCallback } from "usehooks-ts";
 import { useRouter } from "next/navigation";
 import { signUpSchema } from "@/schemas/signUpSchema";
 import axios, { AxiosError } from "axios";
@@ -27,7 +27,7 @@ const Page = () => {
   const [usernameMessage, setUsernameMessage] = useState("");
   const [isCheckingUsername, setIsCheckingUsername] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const debounced = useDebounceCallback(setuserName, 400);
+  const debounced = useDebounceCallback(setuserName, 300);
   const router = useRouter();
   //zod implementation
 
@@ -39,6 +39,14 @@ const Page = () => {
       email: "",
     },
   });
+
+
+  useEffect(() => {
+    console.log(form);
+    console.log("Errors: ", form.formState.errors);
+  }, [form.formState.errors]);
+
+  
   useEffect(() => {
     const checkUsernameUnique = async () => {
       if (username) {
@@ -46,7 +54,7 @@ const Page = () => {
         setUsernameMessage("");
         try {
           const res = await axios.get(
-            `/api/check-username-unique?username=${debounced}`
+            `/api/check-username-unique?username=${username}`
           );
           console.log("api response", res);
           console.log("api response", res.data);
@@ -68,12 +76,17 @@ const Page = () => {
     };
     checkUsernameUnique();
   }, [username]);
+
   const onSubmit = async (data: z.infer<typeof signUpSchema>) => {
+    console.log(" onSubmit triggered", data);
+
     setIsSubmitting(true);
     try {
+      console.log("Form is valid, submitting to API...", data);
+
       const res = await axios.post<ApiResponse>("/api/signup", data);
       toast.success(res.data.message);
-      router.replace(`/verify/${username}`);
+      router.replace(`/verify/${data.username}`);
       setIsSubmitting(false);
     } catch (err) {
       console.error("error in signup of user", err);
@@ -84,10 +97,10 @@ const Page = () => {
     }
   };
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-600 to-purple-700 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gray-500 px-4">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-10">
         <div className="mb-8 text-center">
-          <h1 className=" font-extrabold text-gray-900 mb-2">
+          <h1 className="text-3xl font-extrabold text-gray-900 mb-2">
             Join True Feedback
           </h1>
           <p className="text-gray-600 text-lg">
@@ -122,8 +135,8 @@ const Page = () => {
                     )}
                     <p
                       className={`text-sm ${
-                        usernameMessage === "Username is unique"
-                          ? "text-green-600"
+                        usernameMessage === "username is unique"
+                          ? "text-green-500"
                           : "text-red-600"
                       }`}
                     >
