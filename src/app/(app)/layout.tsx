@@ -1,7 +1,7 @@
 // src/app/layout.tsx
 
-import { Toaster } from "@/components/ui/sonner";
-import AuthProvider from "@/context/AuthProvider";
+import Navbar from "@/components/Navbar";
+
 
 export const metadata = {
   title: "My App",
@@ -16,10 +16,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <AuthProvider>
-          {children}
-          <Toaster />
-        </AuthProvider>
+        <Navbar />
+
+        {children}
       </body>
     </html>
   );
