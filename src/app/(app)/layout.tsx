@@ -2,7 +2,6 @@
 
 import Navbar from "@/components/Navbar";
 
-
 export const metadata = {
   title: "My App",
   description: "Next.js app with NextAuth",
@@ -14,12 +13,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>
-        <Navbar />
+    <div className="flex flex-col min-h-screen">
+      <Navbar />
 
-        {children}
-      </body>
-    </html>
+      {children}
+    </div>
   );
 }
