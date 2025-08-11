@@ -3,7 +3,7 @@ import { authOptions } from "../auth/[...nextauth]/options";
 import dbConnect from "@/lib/dbConnect";
 import { User } from "next-auth";
 import { User as DBUser } from "@/model/User";
-import { success } from "zod";
+
 
 export async function POST(request: Request) {
   await dbConnect();
@@ -50,7 +50,7 @@ export async function POST(request: Request) {
     console.error("error updating user's acceptances status");
     return Response.json(
       {
-        success: true,
+        success: false,
         message: "error updating message accepttance status",
       },
       {
