@@ -53,7 +53,7 @@ function UserDashboard() {
   const fetchMessages = useCallback(
     async (refresh: boolean = false) => {
       setIsLoading(true);
-      setIsSwitchLoading(false);
+      setIsSwitchLoading(true);
       try {
         const response = await axios.get<ApiResponse>("/api/get-messages");
         setMessages(response.data.messages || []);
@@ -123,7 +123,7 @@ function UserDashboard() {
             type="text"
             value={profileUrl}
             disabled
-            className="input input-bordered w-full p-2 mr-2"
+            className="input  bg-amber-50 focus:ring-2 rounded-md  input-bordered w-full p-2 mr-2"
           />
           <Button onClick={copyToClipboard}>Copy</Button>
         </div>
@@ -138,12 +138,18 @@ function UserDashboard() {
           checked={acceptMessages}
           onCheckedChange={handleSwitchChange}
           disabled={isSwitchLoading}
+          className={`peer ${
+            acceptMessages
+              ? "bg-black" // ON state
+              : "bg-gray-300" // OFF state
+          }`}
         />
         <span className="ml-2">
           Accept Messages: {acceptMessages ? "On" : "Off"}
         </span>
       </div>
-      <Separator />
+
+      <Separator className="bg-gray-200" />
 
       <Button
         className="mt-4"
@@ -156,7 +162,7 @@ function UserDashboard() {
         {isLoading ? (
           <Loader2 className="h-4 w-4 animate-spin" />
         ) : (
-          <RefreshCcw className="h-4 w-4" />
+          <RefreshCcw />
         )}
       </Button>
       <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
