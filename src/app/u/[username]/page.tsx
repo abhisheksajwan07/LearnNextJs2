@@ -8,6 +8,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
@@ -18,7 +19,7 @@ import Link from "next/link";
 
 import { useParams } from "next/navigation";
 import { useState } from "react";
-import {useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import * as z from "zod";
 
 import axios, { AxiosError } from "axios";
@@ -82,8 +83,10 @@ export default function SendMessage() {
   };
 
   return (
-    <div>
-      <h1>Public Profile Link</h1>
+    <div className="container mx-auto my-8 p-6 bg-white rounded max-w-4xl">
+      <h1 className="text-4xl font-bold mb-6 text-center">
+        Public Profile Link
+      </h1>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <FormField
@@ -95,20 +98,22 @@ export default function SendMessage() {
                 <FormControl>
                   <Textarea
                     placeholder="write your Anonymous message here"
+                    className="resize-none"
                     {...field}
                   />
                 </FormControl>
+                <FormMessage className="text-red-500"/>
               </FormItem>
             )}
           />
-          <div>
+          <div className="flex justify-center">
             {isLoading ? (
               <Button disabled>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                 Please wait
               </Button>
             ) : (
-              <Button type="submit" disabled={isLoading || !messageContent}>
+              <Button type="submit" className="mt-3 border-2" disabled={isLoading || !messageContent}>
                 Send It
               </Button>
             )}
@@ -116,11 +121,11 @@ export default function SendMessage() {
         </form>
       </Form>
 
-      <div className="space-y-4 my-8">
+      <div className="space-y-4 ">
         <div className="space-y-2">
           <Button
             onClick={fetchSuggestedMessages}
-            className="my-4"
+            className="my-4 border-2"
             disabled={isSuggestLoading}
           >
             Suggest Messages
@@ -131,16 +136,19 @@ export default function SendMessage() {
           <CardHeader>
             <h3 className="text-xl font-semibold">Messages</h3>
           </CardHeader>
-          <CardContent>
+          <CardContent className="flex flex-col space-y-5">
             {error ? (
               <p className="text-red-500">{error.message}</p>
             ) : (
               parseStringMessages(completion).map((message, index) => (
                 <Button
                   key={index}
-                  className="mb-2"
+                  variant="outline"
+                  className="mb-2 m-2"
                   onClick={() => handleMessageClick(message)}
-                ></Button>
+                >
+                  {message}
+                </Button>
               ))
             )}
           </CardContent>
@@ -148,9 +156,9 @@ export default function SendMessage() {
       </div>
       <Separator className="my-6" />
       <div className="text-center">
-        <div className="mb-4">Get Your Message Board</div>
+        <div className="mb-4 text-xl">Get Your Message Board</div>
         <Link href={"/signup"}>
-          <Button>Create Your Account</Button>
+          <Button className="bg-black text-white">Create Your Account</Button>
         </Link>
       </div>
     </div>

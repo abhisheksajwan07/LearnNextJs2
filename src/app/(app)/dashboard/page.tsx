@@ -175,7 +175,7 @@ function UserDashboard() {
             />
           ))
         ) : (
-          <p>No messages to display.</p>
+          <p className="">No messages to display.</p>
         )}
       </div>
     </div>
