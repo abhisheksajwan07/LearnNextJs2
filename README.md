@@ -115,41 +115,26 @@ This project is a Next.js application bootstrapped with `create-next-app`. It le
 ## 📂 Project Structure
 
 ```
-nextjs/
-├── .next/                # Next.js build output
-├── node_modules/        # Node.js dependencies
-├── public/              # Public assets (images, fonts, etc.)
-├── src/                 # Source code
-│   ├── app/             # Next.js app directory (pages, layouts, API routes)
-│   │   ├── api/         # API routes
-│   │   │   ├── auth/    # Authentication API routes
-│   │   │   │   └── [...nextauth]/
-│   │   │   │       ├── route.ts
-│   │   │   │       └── options.ts
-│   │   │   ├── get-messages/
-│   │   │   │   └── route.ts
-│   │   │   ├── verify-code/
-│   │   │   │   └── route.ts
-│   │   │   ├── accept-messages/
-│   │   │   │   └── route.ts
-│   │   ├── layout.tsx   # Root layout component
-│   │   ├── page.tsx     # Main page component
-│   │   └── index.css    # Global CSS styles
-│   ├── components/      # Reusable React components
-│   ├── context/         # React context providers
-│   │   └── AuthProvider.tsx
-│   ├── lib/             # Utility functions and database connection
-│   │   └── dbConnect.ts
-│   ├── model/           # Mongoose models
-│   │   └── User.ts
-├── .eslintrc.mjs        # ESLint configuration
-├── next.config.ts       # Next.js configuration
-├── package-lock.json    # Dependency lockfile
-├── package.json         # Project manifest
-├── postcss.config.js    # PostCSS configuration
-├── README.md            # This file
-├── tailwind.config.js   # Tailwind CSS configuration
-└── tsconfig.json        # TypeScript configuration
+.
+├── public/                     # Static assets
+├── src/
+│  ├── app/                     # App Router
+│  │  ├── (app)/               # UI/app group (not in URL)
+│  │  ├── (auth)/              # Auth routes group
+│  │  ├── api/                 # Route Handlers: app/api/**/route.ts
+│  │  └── u/                   # Dynamic user routes (e.g., u/[username])
+│  ├── components/              # Reusable UI
+│  ├── context/                 # React providers
+│  ├── helpers/                 # Utilities/helpers
+│  ├── lib/                     # Server utilities (db, auth, services)
+│  ├── model/                   # DB models
+│  ├── schemas/                 # Validation (e.g., Zod)
+│  └── types/                   # Global TS types
+├── middleware.ts               # Edge middleware (auth/rewrites)
+├── next.config.ts              # Next.js config
+├── tailwind.config.js          # Tailwind config
+└── package.json                # Scripts/deps
+
 ```
 
 
