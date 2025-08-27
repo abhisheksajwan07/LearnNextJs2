@@ -2,6 +2,7 @@
 
 This project is a Next.js application bootstrapped with `create-next-app`. It leverages a modern tech stack to provide a robust and scalable foundation for building web applications. It includes features like user authentication, database integration, and API endpoints for managing user data and messages. The project aims to provide a streamlined development experience with a focus on performance, security, and maintainability.
 
+> AI feature not implemented currently
 ## 🚀 Key Features
 
 - **User Authentication:** Secure user authentication using NextAuth.js with Credentials provider.
