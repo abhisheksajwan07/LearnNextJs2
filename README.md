@@ -73,8 +73,8 @@ This project is a Next.js application bootstrapped with `create-next-app`. It le
 1.  Clone the repository:
 
     ```bash
-    git clone <repository_url>
-    cd <project_directory>
+    [git clone <repository_url>](https://github.com/abhisheksajwan07/LearnNextJs2.git)
+    
     ```
 
 2.  Install dependencies:
