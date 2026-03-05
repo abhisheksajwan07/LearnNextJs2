@@ -36,8 +36,8 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
       );
       console.log(response);
       // .message ke andar nahi aarha tha response ka message
-      toast.success(response?.data?.messages);
-      onMessageDelete(message._id);
+      toast.success(response?.data?.message);
+      onMessageDelete(message._id as string);
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
       toast.error(
