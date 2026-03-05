@@ -2,6 +2,8 @@
 
 > A sleek, minimalist web app to receive **anonymous messages and feedback** from anyone — with AI-powered message suggestions.
 
+🌐 **[Live Demo](https://learn-next-js2-inky.vercel.app/)**
+
 ![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-black?style=for-the-badge&logo=typescript)
 ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-black?style=for-the-badge&logo=tailwindcss)
