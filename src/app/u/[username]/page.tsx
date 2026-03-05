@@ -83,9 +83,9 @@ export default function SendMessage() {
   };
 
   return (
-    <div className="container mx-auto my-8 p-6 bg-white rounded max-w-4xl">
-      <h1 className="text-4xl font-bold mb-6 text-center">
-        Public Profile Link
+    <div className="container mx-auto my-12 p-8 bg-white border border-gray-100 shadow-sm rounded-xl max-w-4xl">
+      <h1 className="text-4xl font-extrabold mb-8 text-center tracking-tight">
+        Send Anonymous Message
       </h1>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -97,12 +97,12 @@ export default function SendMessage() {
                 <FormLabel>Send Anonymous Message to @{username}</FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder="write your Anonymous message here"
-                    className="resize-none"
+                    placeholder="Write your anonymous message here..."
+                    className="resize-none min-h-[120px] focus:ring-black focus:border-black"
                     {...field}
                   />
                 </FormControl>
-                <FormMessage className="text-red-500"/>
+                <FormMessage className="text-red-500" />
               </FormItem>
             )}
           />
@@ -113,7 +113,7 @@ export default function SendMessage() {
                 Please wait
               </Button>
             ) : (
-              <Button type="submit" className="mt-3 border-2" disabled={isLoading || !messageContent}>
+              <Button type="submit" className="mt-4 bg-black text-white hover:bg-gray-800 font-semibold px-8" disabled={isLoading || !messageContent}>
                 Send It
               </Button>
             )}
@@ -121,30 +121,31 @@ export default function SendMessage() {
         </form>
       </Form>
 
-      <div className="space-y-4 ">
+      <div className="space-y-6 mt-12">
         <div className="space-y-2">
           <Button
             onClick={fetchSuggestedMessages}
-            className="my-4 border-2"
+            variant="outline"
+            className="my-4"
             disabled={isSuggestLoading}
           >
             Suggest Messages
           </Button>
-          <p>Click on any message below to select it.</p>
+          <p className="text-sm text-gray-500">Click on any message below to select it.</p>
         </div>
-        <Card>
+        <Card className="border-gray-200 shadow-sm">
           <CardHeader>
-            <h3 className="text-xl font-semibold">Messages</h3>
+            <h3 className="text-xl font-semibold tracking-tight">Suggestions</h3>
           </CardHeader>
-          <CardContent className="flex flex-col space-y-5">
+          <CardContent className="flex flex-col space-y-3">
             {error ? (
-              <p className="text-red-500">{error.message}</p>
+              <p className="text-red-500 text-sm">{error.message}</p>
             ) : (
               parseStringMessages(completion).map((message, index) => (
                 <Button
                   key={index}
                   variant="outline"
-                  className="mb-2 m-2"
+                  className="justify-start h-auto py-3 whitespace-normal text-left font-normal border-gray-200 hover:bg-gray-50 hover:text-black"
                   onClick={() => handleMessageClick(message)}
                 >
                   {message}
@@ -154,11 +155,11 @@ export default function SendMessage() {
           </CardContent>
         </Card>
       </div>
-      <Separator className="my-6" />
+      <Separator className="my-10 bg-gray-100" />
       <div className="text-center">
-        <div className="mb-4 text-xl">Get Your Message Board</div>
+        <div className="mb-4 text-lg font-medium">Want your own message board?</div>
         <Link href={"/signup"}>
-          <Button className="bg-black text-white">Create Your Account</Button>
+          <Button className="bg-black text-white hover:bg-gray-800 font-semibold px-8">Create Your Account</Button>
         </Link>
       </div>
     </div>

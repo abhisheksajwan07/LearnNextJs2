@@ -113,36 +113,29 @@ function UserDashboard() {
   };
 
   return (
-    <div className="my-8 mx-4 md:mx-8 lg:mx-auto p-6 bg-white rounded w-full max-w-6xl">
-      <h1 className="text-4xl font-bold mb-4">User Dashboard</h1>
+    <div className="my-8 mx-4 md:mx-8 lg:mx-auto p-6 bg-white border border-gray-200 rounded-xl shadow-sm w-full max-w-5xl">
+      <h1 className="text-3xl font-bold mb-6 tracking-tight">User Dashboard</h1>
 
-      <div className="mb-4">
-        <h2 className="text-lg font-semibold mb-2">Copy Your Unique Link</h2>{" "}
-        <div className="flex items-center">
+      <div className="mb-6">
+        <h2 className="text-sm font-semibold text-gray-600 mb-2 uppercase tracking-wide">Copy Your Unique Link</h2>
+        <div className="flex items-center gap-2">
           <input
             type="text"
             value={profileUrl}
             disabled
-            className="input  bg-amber-50 focus:ring-2 rounded-md  input-bordered w-full p-2 mr-2"
+            className="flex-1 bg-gray-50 border border-gray-200 text-gray-600 focus:outline-none rounded-lg p-2.5 text-sm"
           />
-          <Button onClick={copyToClipboard}>Copy</Button>
+          <Button onClick={copyToClipboard} className="bg-black text-white hover:bg-gray-800">Copy</Button>
         </div>
       </div>
 
       <div className="mb-4">
         <Switch
-          // here we used register because switch mai koi name nahi hota to direct register singup par hamne
-          // field use ki thii because vaha ham name lerhe thee
-
           {...register("acceptMessages")}
           checked={acceptMessages}
           onCheckedChange={handleSwitchChange}
           disabled={isSwitchLoading}
-          className={`peer ${
-            acceptMessages
-              ? "bg-black" // ON state
-              : "bg-gray-300" // OFF state
-          }`}
+          className="peer data-[state=checked]:bg-black data-[state=unchecked]:bg-gray-300"
         />
         <span className="ml-2">
           Accept Messages: {acceptMessages ? "On" : "Off"}

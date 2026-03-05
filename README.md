@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Next.js Project 🚀
 
 This project is a Next.js application bootstrapped with `create-next-app`. It leverages a modern tech stack to provide a robust and scalable foundation for building web applications. It includes features like user authentication, database integration, and API endpoints for managing user data and messages. The project aims to provide a streamlined development experience with a focus on performance, security, and maintainability.
@@ -139,3 +140,67 @@ This project is a Next.js application bootstrapped with `create-next-app`. It le
 ```
 
 
+=======
+# True Feedback 
+
+True Feedback is a sleek, minimalist web application that allows users to receive anonymous messages and feedback from anyone. It features a secret dashboard, public profile links, and AI-suggested messages to help spark conversations.
+
+![True Feedback](https://img.shields.io/badge/Next.js-15-black)
+![Tailwind](https://img.shields.io/badge/Tailwind_CSS-black?logo=tailwindcss)
+![MongoDB](https://img.shields.io/badge/MongoDB-black?logo=mongodb)
+
+## ✨ Features
+- **Anonymous Messaging**: Receive honest, unfiltered feedback via a unique public link.
+- **AI Message Suggestions**: Writers block? Use AI to generate thoughtful message suggestions.
+- **Sleek Minimalist UI**: Clean, black-and-white interface focused on content and usability.
+- **Toggle Visibility**: Control whether you are actively accepting messages from your dashboard.
+- **Secure Authentication**: Built with NextAuth for secure and seamless login/signup flows.
+
+## 🚀 Tech Stack
+- **Frontend**: Next.js 15 (App Router), React, Tailwind CSS, shadcn/ui
+- **Backend**: Next.js API Routes, NextAuth.js
+- **Database**: MongoDB with Mongoose
+- **AI Integration**: OpenAI (for suggesting messages)
+- **Validation**: Zod & React Hook Form
+
+## 🛠️ Local Development
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/true-feedback.git
+   cd true-feedback
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Set up Environment Variables**
+   Create a `.env.local` file in the root directory and add the following variables:
+   ```env
+   MONGODB_URI=your_mongodb_connection_string
+   RESEND_API_KEY=your_resend_api_key
+   NEXTAUTH_SECRET=your_random_nextauth_secret
+   OPENAI_API_KEY=your_openai_api_key
+   ```
+
+4. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) to view the application.
+
+## 📦 Deployment (Vercel)
+
+The easiest way to deploy this application is using [Vercel](https://vercel.com/):
+
+1. Push your code to a GitHub repository.
+2. Log in to Vercel and import the repository.
+3. Don't forget to **add all the environment variables** from your `.env.local` file in the Vercel project settings before deploying.
+4. Click **Deploy**.
+
+## 📝 License
+
+This project is open-source and available under the MIT License.
+>>>>>>> bf95dcb (readme)

@@ -56,16 +56,9 @@ const Page = () => {
           const res = await axios.get(
             `/api/check-username-unique?username=${username}`
           );
-          console.log("api response", res);
-          console.log("api response", res.data);
           setUsernameMessage(res.data.message);
         } catch (err) {
           const axiosError = err as AxiosError<ApiResponse>;
-          console.error("Axios error full:", axiosError);
-          console.error(
-            "Axios error response data:",
-            axiosError.response?.data
-          );
           setUsernameMessage(
             axiosError.response?.data.message ?? "error checking username"
           );
@@ -78,33 +71,27 @@ const Page = () => {
   }, [username]);
 
   const onSubmit = async (data: z.infer<typeof signUpSchema>) => {
-    console.log(" onSubmit triggered", data);
-
     setIsSubmitting(true);
     try {
-      console.log("Form is valid, submitting to API...", data);
-
       const res = await axios.post<ApiResponse>("/api/signup", data);
       toast.success(res.data.message);
       router.replace(`/verify/${data.username}`);
       setIsSubmitting(false);
     } catch (err) {
-      console.error("error in signup of user", err);
       const axiosError = err as AxiosError<ApiResponse>;
-      console.log(axiosError)
       const errorMessage = axiosError.response?.data.message;
       toast.error(errorMessage);
       setIsSubmitting(false);
     }
   };
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-500 px-4">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-10">
-        <div className="mb-8 text-center">
-          <h1 className="text-3xl font-extrabold text-gray-900 mb-2">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+      <div className="w-full max-w-md bg-white rounded-xl shadow-lg border border-gray-100 p-8 space-y-8">
+        <div className="text-center">
+          <h1 className="text-3xl font-extrabold tracking-tight mb-2">
             Join True Feedback
           </h1>
-          <p className="text-gray-600 text-lg">
+          <p className="text-gray-500 text-sm">
             Sign up to start your anonymous adventure
           </p>
         </div>
@@ -135,11 +122,10 @@ const Page = () => {
                       <Loader2 className="animate-spin h-5 w-5 text-blue-500" />
                     )}
                     <p
-                      className={`text-sm ${
-                        usernameMessage === "username is unique"
+                      className={`text-sm ${usernameMessage === "username is unique"
                           ? "text-green-500"
                           : "text-red-600"
-                      }`}
+                        }`}
                     >
                       {usernameMessage}
                     </p>
@@ -194,11 +180,11 @@ const Page = () => {
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 text-white font-semibold rounded-lg py-3 transition duration-300 flex justify-center items-center"
+              className="w-full bg-black text-white hover:bg-gray-800 font-semibold py-2 transition-colors flex justify-center items-center"
             >
               {isSubmitting ? (
                 <>
-                  <Loader2 className="mr-2 h-5 w-5 animate-spin" /> Please wait
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please wait
                 </>
               ) : (
                 "Sign up"
@@ -207,12 +193,12 @@ const Page = () => {
           </form>
         </Form>
 
-        <div className="mt-6 text-center text-gray-700">
+        <div className="mt-6 text-center text-sm text-gray-600">
           <p>
             Already a member?{" "}
             <Link
               href="/signin"
-              className="text-blue-600 hover:text-blue-800 font-semibold"
+              className="text-black hover:underline font-semibold"
             >
               Sign in
             </Link>

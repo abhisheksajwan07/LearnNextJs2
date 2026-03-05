@@ -1,0 +1,79 @@
+
+> nextjs@0.1.0 build
+> next build
+
+   Γû▓ Next.js 15.4.4
+   - Environments: .env.local
+
+   Creating an optimized production build ...
+ ΓÜá Compiled with warnings in 1000ms
+
+./src/app/api/suggest-messages/route.ts
+Attempted import error: 'OpenAIStream' is not exported from 'ai' (imported as 'OpenAIStream').
+
+Import trace for requested module:
+./src/app/api/suggest-messages/route.ts
+./node_modules/next/dist/build/webpack/loaders/next-app-loader/index.js?name=app%2Fapi%2Fsuggest-messages%2Froute&page=%2Fapi%2Fsuggest-messages%2Froute&pagePath=private-next-app-dir%2Fapi%2Fsuggest-messages%2Froute.ts&appDir=C%3A%5CUsers%5Cabhis%5COneDrive%5CDesktop%5Cportfolio%5CLearnNextJs2%5Cnextjs%5Csrc%5Capp&appPaths=%2Fapi%2Fsuggest-messages%2Froute&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D&isGlobalNotFoundEnabled=!./src/app/api/suggest-messages/route.ts?__next_edge_ssr_entry__
+
+./src/app/api/suggest-messages/route.ts
+Attempted import error: 'StreamingTextResponse' is not exported from 'ai' (imported as 'StreamingTextResponse').
+
+Import trace for requested module:
+./src/app/api/suggest-messages/route.ts
+./node_modules/next/dist/build/webpack/loaders/next-app-loader/index.js?name=app%2Fapi%2Fsuggest-messages%2Froute&page=%2Fapi%2Fsuggest-messages%2Froute&pagePath=private-next-app-dir%2Fapi%2Fsuggest-messages%2Froute.ts&appDir=C%3A%5CUsers%5Cabhis%5COneDrive%5CDesktop%5Cportfolio%5CLearnNextJs2%5Cnextjs%5Csrc%5Capp&appPaths=%2Fapi%2Fsuggest-messages%2Froute&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D&isGlobalNotFoundEnabled=!./src/app/api/suggest-messages/route.ts?__next_edge_ssr_entry__
+
+ Γ£ô Compiled successfully in 7.0s
+   Linting and checking validity of types ...
+
+Failed to compile.
+
+./src/app/(app)/dashboard/page.tsx
+51:6  Warning: React Hook useCallback has an unnecessary dependency: 'toast'. Either exclude it or remove the dependency array. Outer scope values like 'toast' aren't valid dependencies because mutating them doesn't re-render the component.  react-hooks/exhaustive-deps
+73:5  Warning: React Hook useCallback has an unnecessary dependency: 'toast'. Either exclude it or remove the dependency array. Outer scope values like 'toast' aren't valid dependencies because mutating them doesn't re-render the component.  react-hooks/exhaustive-deps
+83:6  Warning: React Hook useEffect has an unnecessary dependency: 'toast'. Either exclude it or remove the dependency array. Outer scope values like 'toast' aren't valid dependencies because mutating them doesn't re-render the component.  react-hooks/exhaustive-deps
+163:34  Warning: 'index' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/app/(auth)/signin/page.tsx
+7:10  Warning: 'useEffect' is defined but never used.  @typescript-eslint/no-unused-vars
+7:21  Warning: 'useState' is defined but never used.  @typescript-eslint/no-unused-vars
+8:10  Warning: 'useDebounceCallback' is defined but never used.  @typescript-eslint/no-unused-vars
+10:10  Warning: 'signUpSchema' is defined but never used.  @typescript-eslint/no-unused-vars
+11:8  Warning: 'axios' is defined but never used.  @typescript-eslint/no-unused-vars
+11:17  Warning: 'AxiosError' is defined but never used.  @typescript-eslint/no-unused-vars
+13:10  Warning: 'ApiResponse' is defined but never used.  @typescript-eslint/no-unused-vars
+16:3  Warning: 'FormControl' is defined but never used.  @typescript-eslint/no-unused-vars
+24:10  Warning: 'Loader2' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/app/(auth)/signup/page.tsx
+47:6  Warning: React Hook useEffect has a missing dependency: 'form'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/app/api/accept-messages/route.ts
+49:12  Warning: 'err' is defined but never used.  @typescript-eslint/no-unused-vars
+63:27  Warning: 'request' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/app/api/auth/[...nextauth]/options.ts
+7:10  Warning: 'email' is defined but never used.  @typescript-eslint/no-unused-vars
+17:36  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+17:50  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+41:23  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/api/get-messages/route.ts
+3:20  Warning: 'Mongoose' is defined but never used.  @typescript-eslint/no-unused-vars
+4:10  Warning: 'User' is defined but never used.  @typescript-eslint/no-unused-vars
+7:10  Warning: 'success' is defined but never used.  @typescript-eslint/no-unused-vars
+9:27  Warning: 'request' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/app/api/send-messages/route.ts
+4:10  Warning: 'success' is defined but never used.  @typescript-eslint/no-unused-vars
+5:10  Warning: 'create' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/app/api/suggest-messages/route.ts
+11:28  Warning: 'req' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/app/api/verify-code/route.ts
+3:10  Warning: 'success' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/components/MessageCard.tsx
+3:17  Warning: 'useState' is defined but never used.  @typescript-eslint/no-unused-vars
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
